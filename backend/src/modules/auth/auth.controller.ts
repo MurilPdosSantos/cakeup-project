@@ -27,11 +27,15 @@ export class AuthController {
     );
 
     const isProd = process.env.NODE_ENV === "production";
-    res.cookie("access_token", accessToken, {
+    const cookieOptions = {
       httpOnly: true,
       secure: isProd,
-      sameSite: isProd ? "none" : "lax",
-      maxAge: 1000 * 60 * 60
+      sameSite: "lax" as const,
+      maxAge: 1000 * 60 * 60,
+      path: "/"
+    };
+    res.cookie("access_token", accessToken, {
+      ...cookieOptions
     });
 
     return res.json({ ok: true });
@@ -50,7 +54,13 @@ export class AuthController {
       await this.authService.logout(jti, exp);
     }
 
-    res.clearCookie("access_token");
+    const isProd = process.env.NODE_ENV === "production";
+    res.clearCookie("access_token", {
+      httpOnly: true,
+      secure: isProd,
+      sameSite: "lax",
+      path: "/"
+    });
     return res.json({ ok: true });
   }
 }
