@@ -1,12 +1,12 @@
 export default function ChartCard({ title, subtitle, action, children }) {
   return (
-    <div className="rounded-2xl border border-[#F48FB1] bg-white p-6 shadow-sm">
+    <div className="rounded-2xl border border-[#1A6F4A] bg-white p-6 shadow-sm">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
-          <h2 className="text-lg font-semibold text-[#4A2C2A]">{title}</h2>
-          {subtitle ? <p className="mt-1 text-xs text-[#4A2C2A]/70">{subtitle}</p> : null}
+          <h2 className="text-lg font-semibold text-[#2E2E2C]">{title}</h2>
+          {subtitle ? <p className="mt-1 text-xs text-[#2E2E2C]/70">{subtitle}</p> : null}
         </div>
-        {action ? <div className="text-xs text-[#4A2C2A]/70">{action}</div> : null}
+        {action ? <div className="text-xs text-[#2E2E2C]/70">{action}</div> : null}
       </div>
       <div className="mt-4">{children}</div>
     </div>

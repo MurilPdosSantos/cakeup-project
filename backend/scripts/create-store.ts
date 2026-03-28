@@ -3,6 +3,7 @@ import * as path from "path";
 import { DataSource } from "typeorm";
 import * as bcrypt from "bcrypt";
 import { Store } from "../src/modules/stores/store.entity";
+import { GLOBAL_MODULES, OPTIONAL_MODULES, StoreModule } from "../src/modules/stores/store-module.enum";
 
 function loadEnvFile(filePath: string) {
   if (!fs.existsSync(filePath)) return;
@@ -49,14 +50,35 @@ function ensureInternalExecution() {
   }
 }
 
+function parseModules(raw: string | undefined): StoreModule[] {
+  if (!raw) return [...GLOBAL_MODULES];
+  const keys = raw.split(",").map((s) => s.trim().toUpperCase());
+  const valid = keys.filter((k): k is StoreModule =>
+    Object.values(StoreModule).includes(k as StoreModule)
+  );
+  const invalid = keys.filter((k) => !Object.values(StoreModule).includes(k as StoreModule));
+  if (invalid.length) {
+    // eslint-disable-next-line no-console
+    console.warn(`Módulos desconhecidos ignorados: ${invalid.join(", ")}`);
+    // eslint-disable-next-line no-console
+    console.warn(`Módulos disponíveis: ${Object.values(StoreModule).join(", ")}`);
+  }
+  return valid.length ? valid : [...GLOBAL_MODULES];
+}
+
 async function run() {
   ensureInternalExecution();
-  const [name, domain, password] = process.argv.slice(2);
+  const [name, domain, password, modulesArg] = process.argv.slice(2);
   if (!name || !domain || !password) {
     // eslint-disable-next-line no-console
-    console.error("Uso: npm run create:store -- <name> <domain> <password>");
+    console.error(
+      "Uso: npm run create:store -- <name> <domain> <password> [modules]\n" +
+        `  modules: lista separada por vírgula (padrão: ${GLOBAL_MODULES.join(",")})\n` +
+        `  Para adicionar montagem: ${[...GLOBAL_MODULES, ...OPTIONAL_MODULES].join(",")}`
+    );
     process.exit(1);
   }
+  const modules = parseModules(modulesArg);
 
   const dataSource = new DataSource({
     type: "postgres",
@@ -92,11 +114,14 @@ async function run() {
       active: true,
       pageViews: 0,
       topProductName: null,
-      topProductQuantity: 0
+      topProductQuantity: 0,
+      modules
     });
     await repo.save(store);
     // eslint-disable-next-line no-console
     console.log(`Loja criada com id ${store.id}`);
+    // eslint-disable-next-line no-console
+    console.log(`Módulos habilitados: ${store.modules.join(", ")}`);
   } finally {
     await dataSource.destroy();
   }

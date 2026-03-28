@@ -13,6 +13,9 @@
     "delete:stores": "ts-node --transpile-only scripts/delete-stores.ts",
     "migrate:store-metrics": "ts-node --transpile-only scripts/migrate-store-metrics.ts",
     "seed:access": "ts-node --transpile-only scripts/seed-access.ts",
+    "migration:run": "ts-node --transpile-only -r tsconfig-paths/register -e \"require('./src/data-source').AppDataSource.initialize().then(ds => ds.runMigrations()).then(() => process.exit(0)).catch(e => { console.error(e); process.exit(1); })\"",
+    "migration:revert": "ts-node --transpile-only -r tsconfig-paths/register -e \"require('./src/data-source').AppDataSource.initialize().then(ds => ds.undoLastMigration()).then(() => process.exit(0)).catch(e => { console.error(e); process.exit(1); })\"",
+    "migration:show": "ts-node --transpile-only -r tsconfig-paths/register -e \"require('./src/data-source').AppDataSource.initialize().then(ds => ds.showMigrations()).then(() => process.exit(0)).catch(e => { console.error(e); process.exit(1); })\"",
     "build": "nest build",
     "lint": "eslint \"src/**/*.ts\" --max-warnings=0"
   },

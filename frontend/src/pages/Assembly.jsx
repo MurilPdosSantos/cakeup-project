@@ -142,12 +142,12 @@ export default function Assembly() {
     <div className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold">Montagem</h2>
-        <p className="text-sm text-[#4A2C2A]">
+        <p className="text-sm text-[#2E2E2C]">
           Gerencie opções de massas, recheios e acompanhamentos.
         </p>
       </div>
 
-      <div className="rounded-2xl border border-[#F48FB1] bg-white p-6">
+      <div className="rounded-2xl border border-[#1A6F4A] bg-white p-6">
         <div className="flex flex-wrap items-center gap-3">
           {[
             { label: "Massas", value: "MASSA" },
@@ -163,8 +163,8 @@ export default function Assembly() {
               className={[
                 "rounded-full px-4 py-2 text-xs uppercase tracking-wide",
                 activeType === type.value
-                  ? "bg-white0 text-white"
-                  : "border border-[#F48FB1] text-[#4A2C2A]"
+                  ? "bg-[#1A6F4A] text-white"
+                  : "border border-[#1A6F4A] text-[#2E2E2C]"
               ].join(" ")}
             >
               {type.label}
@@ -173,9 +173,9 @@ export default function Assembly() {
         </div>
         <form onSubmit={handleSubmit} className="mt-6 grid gap-4 md:grid-cols-3">
           <div className="space-y-2 md:col-span-1">
-            <label className="text-xs uppercase text-[#4A2C2A]">Nome</label>
+            <label className="text-xs uppercase text-[#2E2E2C]">Nome</label>
             <input
-              className="w-full rounded-md bg-[#FFCCBC] px-3 py-2 text-sm"
+              className="w-full rounded-md bg-[#E8F5EE] px-3 py-2 text-sm"
               value={formData.name}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, name: e.target.value }))
@@ -184,11 +184,11 @@ export default function Assembly() {
             />
           </div>
           <div className="space-y-2 md:col-span-1">
-            <label className="text-xs uppercase text-[#4A2C2A]">
+            <label className="text-xs uppercase text-[#2E2E2C]">
               Preço por Kg
             </label>
             <input
-              className="w-full rounded-md bg-[#FFCCBC] px-3 py-2 text-sm"
+              className="w-full rounded-md bg-[#E8F5EE] px-3 py-2 text-sm"
               value={formData.pricePerKg}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, pricePerKg: e.target.value }))
@@ -200,21 +200,21 @@ export default function Assembly() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="rounded-md bg-white0 px-4 py-2 text-sm font-medium disabled:opacity-60"
+              className="rounded-md bg-[#1A6F4A] px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
             >
               {editingId ? "Atualizar" : "Criar"}
             </button>
             <button
               type="button"
               onClick={resetForm}
-              className="rounded-md border border-[#F48FB1] px-4 py-2 text-sm"
+              className="rounded-md border border-[#1A6F4A] px-4 py-2 text-sm"
             >
               Limpar
             </button>
           </div>
         </form>
         {formStatus && (
-          <div className="mt-3 text-sm text-[#4A2C2A]">{formStatus}</div>
+          <div className="mt-3 text-sm text-[#2E2E2C]">{formStatus}</div>
         )}
       </div>
 
@@ -222,13 +222,13 @@ export default function Assembly() {
         {sections.map((section) => (
           <div
             key={section.title}
-            className="rounded-2xl border border-[#F48FB1] bg-white p-6"
+            className="rounded-2xl border border-[#1A6F4A] bg-white p-6"
           >
-            <h3 className="text-sm font-semibold uppercase text-[#4A2C2A]">
+            <h3 className="text-sm font-semibold uppercase text-[#2E2E2C]">
               {section.title}
             </h3>
             {section.items.length === 0 ? (
-              <p className="mt-4 text-sm text-[#4A2C2A]">
+              <p className="mt-4 text-sm text-[#2E2E2C]">
                 Não há itens para exibir.
               </p>
             ) : (
@@ -236,11 +236,11 @@ export default function Assembly() {
                 {section.items.map((item) => (
                   <li
                     key={item.name}
-                    className="flex items-center justify-between rounded-lg bg-[#FFCCBC] px-3 py-2"
+                    className="flex items-center justify-between rounded-lg bg-[#E8F5EE] px-3 py-2"
                   >
                     <div>
                       <p>{item.name}</p>
-                      <p className="text-xs text-[#4A2C2A]">
+                      <p className="text-xs text-[#2E2E2C]">
                         R$ {item.pricePerKg?.toFixed(2) ?? "0.00"} / Kg
                       </p>
                     </div>
@@ -256,7 +256,7 @@ export default function Assembly() {
                               : "DOCE"
                           )
                         }
-                        className="text-[#4A2C2A] hover:text-[#4A2C2A]"
+                        className="text-[#2E2E2C] hover:text-[#2E2E2C]"
                       >
                         Editar
                       </button>

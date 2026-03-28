@@ -11,15 +11,15 @@ const links = [
 
 export default function Sidebar() {
   return (
-    <aside className="min-h-screen w-64 border-r border-[#F48FB1] bg-white p-6">
+    <aside className="min-h-screen w-64 border-r border-[#1A6F4A] bg-[#1B3D2F] p-6">
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
         className="mb-10"
       >
-        <div className="text-xs uppercase text-[#4A2C2A]">CakeUp</div>
-        <div className="text-xl font-semibold">Admin</div>
+        <div className="text-xs uppercase text-white/60">CakeUp</div>
+        <div className="text-xl font-semibold text-white">Admin</div>
       </motion.div>
 
       <nav className="space-y-2">
@@ -31,8 +31,8 @@ export default function Sidebar() {
               [
                 "block rounded-lg px-4 py-2 text-sm transition",
                 isActive
-                  ? "bg-white/15 text-[#4A2C2A]"
-                  : "text-[#4A2C2A] hover:bg-[#FFCCBC]"
+                  ? "bg-white/20 text-white"
+                  : "text-white/80 hover:bg-white/10"
               ].join(" ")
             }
           >

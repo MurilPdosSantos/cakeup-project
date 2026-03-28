@@ -5,6 +5,7 @@ import * as bcrypt from "bcrypt";
 import { Store } from "./store.entity";
 import { StoreAccessDaily } from "./store-access-daily.entity";
 import { StoreAccessHourly } from "./store-access-hourly.entity";
+import { GLOBAL_MODULES, StoreModule } from "./store-module.enum";
 
 function getUtcDay(date = new Date()) {
   return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
@@ -38,6 +39,31 @@ export class StoresService {
 
   findAll() {
     return this.storesRepo.find();
+  }
+
+  hasModule(store: Store, module: StoreModule): boolean {
+    const modules = Array.isArray(store.modules) ? store.modules : [];
+    return modules.includes(module);
+  }
+
+  async addModule(storeId: string, module: StoreModule): Promise<Store> {
+    const store = await this.storesRepo.findOne({ where: { id: storeId } });
+    if (!store) throw new Error(`Loja não encontrada: ${storeId}`);
+    const modules = Array.isArray(store.modules) ? store.modules : [...GLOBAL_MODULES];
+    if (!modules.includes(module)) {
+      store.modules = [...modules, module];
+      await this.storesRepo.save(store);
+    }
+    return store;
+  }
+
+  async removeModule(storeId: string, module: StoreModule): Promise<Store> {
+    const store = await this.storesRepo.findOne({ where: { id: storeId } });
+    if (!store) throw new Error(`Loja não encontrada: ${storeId}`);
+    store.modules = (Array.isArray(store.modules) ? store.modules : []).filter(
+      (m) => m !== module
+    );
+    return this.storesRepo.save(store);
   }
 
   async incrementPageViews(
@@ -118,9 +144,14 @@ export class StoresService {
       .getRawMany();
   }
 
-  async create(name: string, domain: string, password: string) {
+  async create(
+    name: string,
+    domain: string,
+    password: string,
+    modules: StoreModule[] = [...GLOBAL_MODULES]
+  ) {
     const passwordHash = await bcrypt.hash(password, 10);
-    const store = this.storesRepo.create({ name, domain, passwordHash });
+    const store = this.storesRepo.create({ name, domain, passwordHash, modules });
     return this.storesRepo.save(store);
   }
 }

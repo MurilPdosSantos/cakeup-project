@@ -17,7 +17,7 @@ import { formatNumber } from "./formatters.js";
 function DefaultTooltip({ active, payload, label }) {
   if (!active || !payload || payload.length === 0) return null;
   return (
-    <div className="rounded-lg border border-[#F48FB1]/40 bg-white px-3 py-2 text-xs text-[#4A2C2A] shadow">
+    <div className="rounded-lg border border-[#1A6F4A]/40 bg-white px-3 py-2 text-xs text-[#2E2E2C] shadow">
       <p className="font-semibold">{label}</p>
       {payload.map((entry) => (
         <p key={entry.dataKey} className="mt-1">
@@ -33,7 +33,7 @@ export function TimeSeriesChart({ data, lines }) {
     <div className="h-56 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#F48FB1" opacity={0.2} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#1A6F4A" opacity={0.2} />
           <XAxis dataKey="label" tick={{ fontSize: 10 }} />
           <YAxis tick={{ fontSize: 10 }} tickFormatter={formatNumber} />
           <Tooltip content={<DefaultTooltip />} />
@@ -63,11 +63,11 @@ export function ComparisonAreaChart({ data }) {
         <AreaChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="currentFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#F48FB1" stopOpacity={0.5} />
-              <stop offset="95%" stopColor="#F48FB1" stopOpacity={0} />
+              <stop offset="5%" stopColor="#1A6F4A" stopOpacity={0.5} />
+              <stop offset="95%" stopColor="#1A6F4A" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="#F48FB1" opacity={0.2} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#1A6F4A" opacity={0.2} />
           <XAxis dataKey="label" tick={{ fontSize: 10 }} />
           <YAxis tick={{ fontSize: 10 }} tickFormatter={formatNumber} />
           <Tooltip content={<DefaultTooltip />} />
@@ -85,7 +85,7 @@ export function ComparisonAreaChart({ data }) {
             type="monotone"
             dataKey="current"
             name="Período atual"
-            stroke="#F48FB1"
+            stroke="#1A6F4A"
             fill="url(#currentFill)"
             isAnimationActive
           />
@@ -95,12 +95,12 @@ export function ComparisonAreaChart({ data }) {
   );
 }
 
-export function SimpleBarChart({ data, dataKey = "value", color = "#F48FB1" }) {
+export function SimpleBarChart({ data, dataKey = "value", color = "#1A6F4A" }) {
   return (
     <div className="h-48 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#F48FB1" opacity={0.2} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#1A6F4A" opacity={0.2} />
           <XAxis dataKey="label" tick={{ fontSize: 10 }} />
           <YAxis tick={{ fontSize: 10 }} tickFormatter={formatNumber} />
           <Tooltip content={<DefaultTooltip />} />
@@ -116,13 +116,13 @@ export function StackedBarChart({ data }) {
     <div className="h-48 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#F48FB1" opacity={0.2} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#1A6F4A" opacity={0.2} />
           <XAxis dataKey="label" tick={{ fontSize: 10 }} />
           <YAxis tick={{ fontSize: 10 }} tickFormatter={formatNumber} />
           <Tooltip content={<DefaultTooltip />} />
           <Legend verticalAlign="top" height={24} />
-          <Bar dataKey="newCount" name="Novos" stackId="a" fill="#FBCFE8" />
-          <Bar dataKey="returningCount" name="Recorrentes" stackId="a" fill="#F48FB1" />
+          <Bar dataKey="newCount" name="Novos" stackId="a" fill="#E8F5EE" />
+          <Bar dataKey="returningCount" name="Recorrentes" stackId="a" fill="#1A6F4A" />
         </BarChart>
       </ResponsiveContainer>
     </div>
@@ -137,13 +137,13 @@ export function HeatmapChart({ days, hours, values }) {
       <div className="grid" style={{ gridTemplateColumns: `repeat(${hours.length + 1}, minmax(24px, 1fr))` }}>
         <div />
         {hours.map((hour) => (
-          <div key={hour} className="text-[10px] text-[#4A2C2A]/60">
+          <div key={hour} className="text-[10px] text-[#2E2E2C]/60">
             {hour}
           </div>
         ))}
         {days.map((day) => (
           <div key={day} className="contents">
-            <div className="text-[10px] text-[#4A2C2A]/60">{day.slice(5)}</div>
+            <div className="text-[10px] text-[#2E2E2C]/60">{day.slice(5)}</div>
             {hours.map((hour) => {
               const value = valueMap.get(`${day}-${hour}`) || 0;
               const opacity = maxValue ? Math.max(0.15, value / maxValue) : 0.1;
@@ -152,7 +152,7 @@ export function HeatmapChart({ days, hours, values }) {
                   key={`${day}-${hour}`}
                   title={`${day} ${hour}h: ${formatNumber(value)}`}
                   className="h-6 rounded-sm"
-                  style={{ backgroundColor: `rgba(244, 143, 177, ${opacity})` }}
+                  style={{ backgroundColor: `rgba(26, 111, 74, ${opacity})` }}
                 />
               );
             })}

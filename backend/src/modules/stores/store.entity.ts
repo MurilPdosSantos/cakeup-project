@@ -5,6 +5,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
+import { GLOBAL_MODULES, StoreModule } from "./store-module.enum";
 
 @Entity({ name: "stores" })
 export class Store {
@@ -33,6 +34,14 @@ export class Store {
 
   @Column({ name: "top_product_quantity", type: "int", default: 0 })
   topProductQuantity: number;
+
+  @Column({
+    name: "modules",
+    type: "simple-array",
+    nullable: true,
+    default: GLOBAL_MODULES.join(",")
+  })
+  modules: StoreModule[];
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;

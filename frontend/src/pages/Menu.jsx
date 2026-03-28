@@ -287,21 +287,21 @@ export default function Menu() {
     <div className="space-y-8">
       <div>
         <h2 className="text-lg font-semibold">Cardápio</h2>
-        <p className="text-sm text-[#4A2C2A]">
+        <p className="text-sm text-[#2E2E2C]">
           Crie seções e organize os produtos exibidos na landing Template.
         </p>
       </div>
 
-      <div className="rounded-2xl border border-[#F48FB1] bg-white p-6">
-        <h3 className="text-sm font-semibold uppercase text-[#4A2C2A]">
+      <div className="rounded-2xl border border-[#1A6F4A] bg-white p-6">
+        <h3 className="text-sm font-semibold uppercase text-[#2E2E2C]">
           {editingId ? "Editar seção" : "Nova seção"}
         </h3>
         <form onSubmit={handleSectionSubmit} className="mt-4 grid gap-4">
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <label className="text-xs uppercase text-[#4A2C2A]">Nome</label>
+              <label className="text-xs uppercase text-[#2E2E2C]">Nome</label>
               <input
-                className="w-full rounded-md bg-[#FFCCBC] px-3 py-2 text-sm"
+                className="w-full rounded-md bg-[#E8F5EE] px-3 py-2 text-sm"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, name: e.target.value }))
@@ -310,11 +310,11 @@ export default function Menu() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs uppercase text-[#4A2C2A]">
+              <label className="text-xs uppercase text-[#2E2E2C]">
                 Tipo de exibição
               </label>
               <select
-                className="w-full rounded-md bg-[#FFCCBC] px-3 py-2 text-sm"
+                className="w-full rounded-md bg-[#E8F5EE] px-3 py-2 text-sm"
                 value={formData.displayType}
                 onChange={(e) =>
                   setFormData((prev) => ({
@@ -334,14 +334,14 @@ export default function Menu() {
 
           <div className="grid gap-4 md:grid-cols-3">
             <div className="space-y-2">
-              <label className="text-xs uppercase text-[#4A2C2A]">
+              <label className="text-xs uppercase text-[#2E2E2C]">
                 Colunas desktop
               </label>
               <input
                 type="number"
                 min="1"
                 max="6"
-                className="w-full rounded-md bg-[#FFCCBC] px-3 py-2 text-sm"
+                className="w-full rounded-md bg-[#E8F5EE] px-3 py-2 text-sm"
                 value={formData.config.columns_desktop}
                 onChange={(e) =>
                   setFormData((prev) => ({
@@ -355,14 +355,14 @@ export default function Menu() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs uppercase text-[#4A2C2A]">
+              <label className="text-xs uppercase text-[#2E2E2C]">
                 Colunas mobile
               </label>
               <input
                 type="number"
                 min="1"
                 max="4"
-                className="w-full rounded-md bg-[#FFCCBC] px-3 py-2 text-sm"
+                className="w-full rounded-md bg-[#E8F5EE] px-3 py-2 text-sm"
                 value={formData.config.columns_mobile}
                 onChange={(e) =>
                   setFormData((prev) => ({
@@ -376,11 +376,11 @@ export default function Menu() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs uppercase text-[#4A2C2A]">
+              <label className="text-xs uppercase text-[#2E2E2C]">
                 Texto do botão
               </label>
               <input
-                className="w-full rounded-md bg-[#FFCCBC] px-3 py-2 text-sm"
+                className="w-full rounded-md bg-[#E8F5EE] px-3 py-2 text-sm"
                 value={formData.config.button_text}
                 onChange={(e) =>
                   setFormData((prev) => ({
@@ -401,7 +401,7 @@ export default function Menu() {
             ].map((item) => (
               <label
                 key={item.key}
-                className="flex items-center gap-2 text-sm text-[#4A2C2A]"
+                className="flex items-center gap-2 text-sm text-[#2E2E2C]"
               >
                 <input
                   type="checkbox"
@@ -422,20 +422,20 @@ export default function Menu() {
           </div>
 
           {formStatus && (
-            <div className="text-sm text-[#4A2C2A]">{formStatus}</div>
+            <div className="text-sm text-[#2E2E2C]">{formStatus}</div>
           )}
           <div className="flex flex-wrap gap-3">
             <button
               type="submit"
               disabled={isSubmitting}
-              className="rounded-md bg-white0 px-4 py-2 text-sm font-medium disabled:opacity-60"
+              className="rounded-md bg-[#1A6F4A] px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
             >
               {editingId ? "Atualizar seção" : "Criar seção"}
             </button>
             <button
               type="button"
               onClick={resetForm}
-              className="rounded-md border border-[#F48FB1] px-4 py-2 text-sm"
+              className="rounded-md border border-[#1A6F4A] px-4 py-2 text-sm"
             >
               Limpar
             </button>
@@ -444,17 +444,17 @@ export default function Menu() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_1.4fr]">
-        <div className="rounded-2xl border border-[#F48FB1] bg-white p-6">
+        <div className="rounded-2xl border border-[#1A6F4A] bg-white p-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold uppercase text-[#4A2C2A]">
+            <h3 className="text-sm font-semibold uppercase text-[#2E2E2C]">
               Seções existentes
             </h3>
-            <span className="text-xs text-[#4A2C2A]">
+            <span className="text-xs text-[#2E2E2C]">
               {sections.length} seção(ões)
             </span>
           </div>
           {sections.length === 0 ? (
-            <p className="mt-4 text-sm text-[#4A2C2A]">
+            <p className="mt-4 text-sm text-[#2E2E2C]">
               {status || "Nenhuma seção criada ainda."}
             </p>
           ) : (
@@ -465,27 +465,27 @@ export default function Menu() {
                   className={[
                     "rounded-xl border px-4 py-3 text-sm",
                     selectedSectionId === section.id
-                      ? "border-[#F48FB1]/60 bg-white/10"
-                      : "border-[#F48FB1] bg-white/90"
+                      ? "border-[#1A6F4A]/60 bg-white/10"
+                      : "border-[#1A6F4A] bg-white/90"
                   ].join(" ")}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <p className="font-medium">{section.name}</p>
-                      <p className="text-xs text-[#4A2C2A]">
+                      <p className="text-xs text-[#2E2E2C]">
                         Layout: {section.displayType}
                       </p>
                     </div>
                     <div className="flex flex-col items-end gap-2">
                       <button
                         onClick={() => setSelectedSectionId(section.id)}
-                        className="text-[#4A2C2A] hover:text-[#4A2C2A]"
+                        className="text-[#2E2E2C] hover:text-[#2E2E2C]"
                       >
                         Gerenciar
                       </button>
                       <button
                         onClick={() => startEdit(section)}
-                        className="text-[#4A2C2A] hover:text-[#4A2C2A]"
+                        className="text-[#2E2E2C] hover:text-[#2E2E2C]"
                       >
                         Editar
                       </button>
@@ -503,25 +503,25 @@ export default function Menu() {
           )}
         </div>
 
-        <div className="rounded-2xl border border-[#F48FB1] bg-white p-6">
+        <div className="rounded-2xl border border-[#1A6F4A] bg-white p-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold uppercase text-[#4A2C2A]">
+            <h3 className="text-sm font-semibold uppercase text-[#2E2E2C]">
               Produtos da seção
             </h3>
-            <span className="text-xs text-[#4A2C2A]">
+            <span className="text-xs text-[#2E2E2C]">
               {selectedSection ? selectedSection.name : "Nenhuma seção"}
             </span>
           </div>
 
           {!selectedSection ? (
-            <p className="mt-4 text-sm text-[#4A2C2A]">
+            <p className="mt-4 text-sm text-[#2E2E2C]">
               Selecione uma seção para configurar os produtos.
             </p>
           ) : (
             <>
               <div className="mt-4 flex flex-wrap gap-3">
                 <select
-                  className="min-w-[220px] rounded-md bg-[#FFCCBC] px-3 py-2 text-sm"
+                  className="min-w-[220px] rounded-md bg-[#E8F5EE] px-3 py-2 text-sm"
                   value={newProductId}
                   onChange={(e) => setNewProductId(e.target.value)}
                 >
@@ -535,14 +535,14 @@ export default function Menu() {
                 <button
                   type="button"
                   onClick={addProductToSection}
-                  className="rounded-md border border-[#F48FB1] px-4 py-2 text-sm"
+                  className="rounded-md border border-[#1A6F4A] px-4 py-2 text-sm"
                 >
                   Inserir
                 </button>
               </div>
 
               {linkItems.length === 0 ? (
-                <p className="mt-4 text-sm text-[#4A2C2A]">
+                <p className="mt-4 text-sm text-[#2E2E2C]">
                   Nenhum produto vinculado ainda.
                 </p>
               ) : (
@@ -550,18 +550,18 @@ export default function Menu() {
                   {linkItems.map((item) => (
                     <div
                       key={item.productId}
-                      className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-[#F48FB1] bg-white/90 px-4 py-3 text-sm"
+                      className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-[#1A6F4A] bg-white/90 px-4 py-3 text-sm"
                     >
                       <div>
                         <p className="font-medium">{item.name}</p>
-                        <p className="text-xs text-[#4A2C2A]">
+                        <p className="text-xs text-[#2E2E2C]">
                           {item.productId}
                         </p>
                       </div>
                       <div className="flex flex-wrap items-center gap-3">
                         <input
                           type="number"
-                          className="w-20 rounded-md bg-[#FFCCBC] px-2 py-1 text-xs"
+                          className="w-20 rounded-md bg-[#E8F5EE] px-2 py-1 text-xs"
                           value={item.position}
                           onChange={(e) =>
                             updateLinkItem(item.productId, {
@@ -569,7 +569,7 @@ export default function Menu() {
                             })
                           }
                         />
-                        <label className="flex items-center gap-2 text-xs text-[#4A2C2A]">
+                        <label className="flex items-center gap-2 text-xs text-[#2E2E2C]">
                           <input
                             type="checkbox"
                             checked={item.featured}
@@ -581,7 +581,7 @@ export default function Menu() {
                           />
                           Destaque
                         </label>
-                        <label className="flex items-center gap-2 text-xs text-[#4A2C2A]">
+                        <label className="flex items-center gap-2 text-xs text-[#2E2E2C]">
                           <input
                             type="checkbox"
                             checked={item.visible}
@@ -600,14 +600,14 @@ export default function Menu() {
               )}
 
               {linkStatus && (
-                <div className="mt-4 text-sm text-[#4A2C2A]">{linkStatus}</div>
+                <div className="mt-4 text-sm text-[#2E2E2C]">{linkStatus}</div>
               )}
               <div className="mt-4">
                 <button
                   type="button"
                   disabled={isSavingLinks}
                   onClick={saveLinks}
-                  className="rounded-md bg-white0 px-4 py-2 text-sm font-medium disabled:opacity-60"
+                  className="rounded-md bg-[#1A6F4A] px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
                 >
                   Salvar produtos da seção
                 </button>

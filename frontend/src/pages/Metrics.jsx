@@ -117,8 +117,8 @@ export default function Metrics() {
               className={[
                 "rounded-full border px-4 py-1 text-xs uppercase tracking-wide",
                 view === item
-                  ? "border-[#F48FB1] bg-[#F48FB1]/20 text-[#4A2C2A]"
-                  : "border-[#F48FB1]/50 text-[#4A2C2A]/70"
+                  ? "border-[#1A6F4A] bg-[#1A6F4A]/20 text-[#2E2E2C]"
+                  : "border-[#1A6F4A]/50 text-[#2E2E2C]/70"
               ].join(" ")}
             >
               {item === "daily" ? "Diário" : item === "weekly" ? "Semanal" : "Mensal"}
@@ -158,7 +158,7 @@ export default function Metrics() {
           />
         </div>
       ) : (
-        <div className="rounded-2xl border border-[#F48FB1] bg-white p-6 text-sm text-[#4A2C2A]">
+        <div className="rounded-2xl border border-[#1A6F4A] bg-white p-6 text-sm text-[#2E2E2C]">
           {status || "Não há métricas para exibir no momento."}
         </div>
       )}
@@ -185,9 +185,9 @@ export default function Metrics() {
                     : monthlySeries
                 }
                 lines={[
-                  { dataKey: "value", name: "Acessos", color: "#F48FB1" },
+                  { dataKey: "value", name: "Acessos", color: "#1A6F4A" },
                   view === "daily"
-                    ? { dataKey: "ma7", name: "Média 7 dias", color: "#F59E0B" }
+                    ? { dataKey: "ma7", name: "Média 7 dias", color: "#F4A01C" }
                     : null
                 ].filter(Boolean)}
               />
@@ -218,7 +218,7 @@ export default function Metrics() {
               <SimpleBarChart data={metrics?.topDays || []} />
             </ChartCard>
             <ChartCard title="Distribuição por dia da semana" subtitle="Onde o tráfego se concentra">
-              <SimpleBarChart data={weekdayDistribution} color="#FB7185" />
+              <SimpleBarChart data={weekdayDistribution} color="#1A6F4A" />
             </ChartCard>
           </>
         )}
@@ -235,7 +235,7 @@ export default function Metrics() {
             <ChartCard title="Crescimento acumulado" subtitle="Soma progressiva de acessos">
               <TimeSeriesChart
                 data={cumulativeSeries}
-                lines={[{ dataKey: "value", name: "Acumulado", color: "#F48FB1" }]}
+                lines={[{ dataKey: "value", name: "Acumulado", color: "#1A6F4A" }]}
               />
             </ChartCard>
             <ChartCard title="Heatmap por hora" subtitle="Últimos 7 dias">

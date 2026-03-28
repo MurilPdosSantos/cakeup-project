@@ -182,13 +182,13 @@ export default function Products() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-lg font-semibold">Produtos</h2>
-          <p className="text-sm text-[#4A2C2A]">
+          <p className="text-sm text-[#2E2E2C]">
             Registre, edite e exclua produtos. Até 4 fotos ou 1 vídeo.
           </p>
         </div>
         <button
           onClick={() => setShowForm((prev) => !prev)}
-          className="rounded-md bg-white0 px-4 py-2 text-sm font-medium"
+          className="rounded-md bg-[#1A6F4A] px-4 py-2 text-sm font-medium text-white"
         >
           Novo produto
         </button>
@@ -197,13 +197,13 @@ export default function Products() {
       {showForm && (
         <form
           onSubmit={handleSubmit}
-          className="rounded-2xl border border-[#F48FB1] bg-white p-6 space-y-4"
+          className="rounded-2xl border border-[#1A6F4A] bg-white p-6 space-y-4"
         >
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <label className="text-xs uppercase text-[#4A2C2A]">Nome</label>
+              <label className="text-xs uppercase text-[#2E2E2C]">Nome</label>
               <input
-                className="w-full rounded-md bg-[#FFCCBC] px-3 py-2 text-sm"
+                className="w-full rounded-md bg-[#E8F5EE] px-3 py-2 text-sm"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, name: e.target.value }))
@@ -212,11 +212,11 @@ export default function Products() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs uppercase text-[#4A2C2A]">
+              <label className="text-xs uppercase text-[#2E2E2C]">
                 Preço estimado
               </label>
               <input
-                className="w-full rounded-md bg-[#FFCCBC] px-3 py-2 text-sm"
+                className="w-full rounded-md bg-[#E8F5EE] px-3 py-2 text-sm"
                 value={formData.estimatedPrice}
                 onChange={(e) =>
                   setFormData((prev) => ({
@@ -229,9 +229,9 @@ export default function Products() {
             </div>
           </div>
           <div className="space-y-2">
-            <label className="text-xs uppercase text-[#4A2C2A]">Descrição</label>
+            <label className="text-xs uppercase text-[#2E2E2C]">Descrição</label>
             <textarea
-              className="w-full rounded-md bg-[#FFCCBC] px-3 py-2 text-sm"
+              className="w-full rounded-md bg-[#E8F5EE] px-3 py-2 text-sm"
               rows={3}
               value={formData.description}
               onChange={(e) =>
@@ -244,7 +244,7 @@ export default function Products() {
             />
           </div>
           <div className="space-y-2">
-            <label className="text-xs uppercase text-[#4A2C2A]">
+            <label className="text-xs uppercase text-[#2E2E2C]">
               Mídia (até 4 fotos ou 1 vídeo)
             </label>
             <input
@@ -252,10 +252,10 @@ export default function Products() {
               multiple
               accept="image/*,video/*"
               onChange={handleFileChange}
-              className="text-sm text-[#4A2C2A]"
+              className="text-sm text-[#2E2E2C]"
             />
             {editingId && (
-              <p className="text-xs text-[#4A2C2A]">
+              <p className="text-xs text-[#2E2E2C]">
                 Envie novos arquivos apenas se quiser substituir a mídia atual.
               </p>
             )}
@@ -283,7 +283,7 @@ export default function Products() {
               </div>
             )}
             {files.length > 0 && (
-              <p className="text-xs text-[#4A2C2A]">
+              <p className="text-xs text-[#2E2E2C]">
                 {files.length} arquivo(s) selecionado(s)
               </p>
             )}
@@ -311,13 +311,13 @@ export default function Products() {
             )}
           </div>
           {formStatus && (
-            <div className="text-sm text-[#4A2C2A]">{formStatus}</div>
+            <div className="text-sm text-[#2E2E2C]">{formStatus}</div>
           )}
           <div className="flex gap-3">
             <button
               type="submit"
               disabled={isSubmitting}
-              className="rounded-md bg-white0 px-4 py-2 text-sm font-medium disabled:opacity-60"
+              className="rounded-md bg-[#1A6F4A] px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
             >
               {editingId ? "Atualizar" : "Salvar"}
             </button>
@@ -327,7 +327,7 @@ export default function Products() {
                 resetForm();
                 setShowForm(false);
               }}
-              className="rounded-md border border-[#F48FB1] px-4 py-2 text-sm"
+              className="rounded-md border border-[#1A6F4A] px-4 py-2 text-sm"
             >
               Cancelar
             </button>
@@ -335,8 +335,8 @@ export default function Products() {
         </form>
       )}
 
-      <div className="rounded-2xl border border-[#F48FB1] bg-white">
-        <div className="grid grid-cols-5 gap-4 border-b border-[#F48FB1] px-6 py-3 text-xs uppercase text-[#4A2C2A]">
+      <div className="rounded-2xl border border-[#1A6F4A] bg-white">
+        <div className="grid grid-cols-5 gap-4 border-b border-[#1A6F4A] px-6 py-3 text-xs uppercase text-[#2E2E2C]">
           <span>Produto</span>
           <span>Status</span>
           <span>Mídia</span>
@@ -344,14 +344,14 @@ export default function Products() {
           <span>Ações</span>
         </div>
         {products.length === 0 ? (
-          <div className="px-6 py-6 text-sm text-[#4A2C2A]">
+          <div className="px-6 py-6 text-sm text-[#2E2E2C]">
             {status || "Não há produtos para exibir."}
           </div>
         ) : (
           products.map((product) => (
             <div
               key={product.id || product.name}
-              className="grid grid-cols-5 gap-4 px-6 py-4 text-sm text-[#4A2C2A] items-center"
+              className="grid grid-cols-5 gap-4 px-6 py-4 text-sm text-[#2E2E2C] items-center"
             >
               <span>{product.name}</span>
               <span>{product.status}</span>
@@ -365,7 +365,7 @@ export default function Products() {
               </span>
               <div className="flex gap-2">
                 {(product.mediaUrls || []).filter(Boolean).length === 0 ? (
-                  <span className="text-xs text-[#4A2C2A]">Sem mídia</span>
+                  <span className="text-xs text-[#2E2E2C]">Sem mídia</span>
                 ) : product.mediaType === "video" ? (
                   <video
                     src={(product.mediaUrls || []).filter(Boolean)[0]}
@@ -391,7 +391,7 @@ export default function Products() {
               <div className="flex flex-col gap-2 text-sm">
                 <button
                   onClick={() => openEdit(product)}
-                  className="text-left text-[#4A2C2A] hover:text-[#4A2C2A]"
+                  className="text-left text-[#2E2E2C] hover:text-[#2E2E2C]"
                 >
                   Editar
                 </button>

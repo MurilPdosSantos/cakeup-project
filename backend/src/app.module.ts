@@ -24,7 +24,9 @@ import { MenuModule } from "./modules/menu/menu.module";
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: true
+      synchronize: process.env.NODE_ENV !== "production",
+      migrations: [__dirname + "/migrations/*{.ts,.js}"],
+      migrationsRun: process.env.NODE_ENV === "production"
     }),
     RedisModule,
     StoresModule,
