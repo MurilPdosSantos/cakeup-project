@@ -98,15 +98,21 @@ async function bootstrap() {
     app.use(createDockerHttpLogger());
   }
   const uploadsDir = path.resolve(process.cwd(), "assets", "uploads");
-  app.use("/uploads", express.static(uploadsDir));
-  app.use(
-    "/uploads/@",
-    (req, res, next) => {
-      req.url = req.url.replace(/^\/@/, "/");
-      next();
-    },
-    express.static(uploadsDir)
-  );
+
+  app.use("/uploads", (req: Request, res: Response, next: NextFunction) => {
+    const decodedPath = decodeURIComponent(req.path);
+    const filePath = path.normalize(path.join(uploadsDir, decodedPath));
+
+    if (!filePath.startsWith(uploadsDir)) {
+      return res.status(403).end();
+    }
+
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+      return res.sendFile(filePath);
+    }
+
+    next();
+  });
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
