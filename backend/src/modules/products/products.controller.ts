@@ -40,7 +40,8 @@ function getDomainFolder(req: AuthedRequest) {
 
 function buildMediaUrls(domainFolder: string, files: string[] | null) {
   if (!files || files.length === 0) return [];
-  return files.map((file) => `/uploads/${domainFolder}/${file}`);
+  const base = process.env.PUBLIC_BASE_URL || "";
+  return files.map((file) => `${base}/uploads/${domainFolder}/${file}`);
 }
 
 function ensureDir(dirPath: string) {
