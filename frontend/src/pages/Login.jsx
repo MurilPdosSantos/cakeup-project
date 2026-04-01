@@ -28,7 +28,9 @@ export default function Login({ authKey }) {
         return;
       }
 
+      const data = await res.json();
       localStorage.setItem(authKey, "true");
+      localStorage.setItem("cakeup_modules", JSON.stringify(data.modules ?? []));
       setStatus("Login ok");
       navigate("/app/metrics");
     } finally {

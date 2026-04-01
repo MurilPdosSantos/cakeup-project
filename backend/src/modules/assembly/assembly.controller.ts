@@ -11,15 +11,19 @@ import {
   UseGuards
 } from "@nestjs/common";
 import { JwtAuthGuard } from "../auth/jwt-auth.guard";
+import { ModuleGuard } from "../auth/module.guard";
+import { RequireModule } from "../auth/require-module.decorator";
+import { StoreModule } from "../stores/store-module.enum";
 import { AssemblyService } from "./assembly.service";
 
 type AuthedRequest = { user?: { storeId: string } };
 
 @Controller("assembly")
+@UseGuards(JwtAuthGuard, ModuleGuard)
+@RequireModule(StoreModule.ASSEMBLY)
 export class AssemblyController {
   constructor(private readonly assemblyService: AssemblyService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Get()
   async list(@Req() req: AuthedRequest) {
     const storeId = req.user?.storeId;
@@ -48,7 +52,6 @@ export class AssemblyController {
     };
   }
 
-  @UseGuards(JwtAuthGuard)
   @Post("items")
   async create(@Req() req: AuthedRequest) {
     const storeId = req.user?.storeId;
@@ -81,7 +84,6 @@ export class AssemblyController {
     };
   }
 
-  @UseGuards(JwtAuthGuard)
   @Put("items/:id")
   async update(@Req() req: AuthedRequest, @Param("id") id: string) {
     const storeId = req.user?.storeId;
@@ -112,7 +114,6 @@ export class AssemblyController {
     };
   }
 
-  @UseGuards(JwtAuthGuard)
   @Delete("items/:id")
   async remove(@Req() req: AuthedRequest, @Param("id") id: string) {
     const storeId = req.user?.storeId;

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
   Req,
   Res,
@@ -12,6 +13,10 @@ import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
 import { JwtAuthGuard } from "./jwt-auth.guard";
 
+interface AuthedRequest extends Request {
+  user: { storeId: string; domain: string; jti: string };
+}
+
 @Controller("auth")
 export class AuthController {
   constructor(
@@ -21,7 +26,7 @@ export class AuthController {
 
   @Post("login")
   async login(@Body() body: LoginDto, @Res() res: Response) {
-    const { accessToken } = await this.authService.login(
+    const { accessToken, modules } = await this.authService.login(
       body.domain,
       body.password
     );
@@ -38,7 +43,14 @@ export class AuthController {
       ...cookieOptions
     });
 
-    return res.json({ ok: true });
+    return res.json({ ok: true, modules });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get("me")
+  async me(@Req() req: AuthedRequest) {
+    const modules = await this.authService.getStoreModules(req.user.storeId);
+    return { modules };
   }
 
   @UseGuards(JwtAuthGuard)

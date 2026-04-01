@@ -6,6 +6,7 @@ import Products from "./pages/Products.jsx";
 import Assembly from "./pages/Assembly.jsx";
 import Invoices from "./pages/Invoices.jsx";
 import Menu from "./pages/Menu.jsx";
+import { ModuleRoute } from "./components/ModuleRoute.jsx";
 
 const AUTH_KEY = "cakeup_auth";
 
@@ -33,11 +34,11 @@ export default function App() {
         }
       >
         <Route index element={<Navigate to="metrics" replace />} />
-        <Route path="metrics" element={<Metrics />} />
-        <Route path="menu" element={<Menu />} />
-        <Route path="products" element={<Products />} />
-        <Route path="assembly" element={<Assembly />} />
-        <Route path="invoices" element={<Invoices />} />
+        <Route path="metrics" element={<ModuleRoute module="METRICS"><Metrics /></ModuleRoute>} />
+        <Route path="menu" element={<ModuleRoute module="MENU"><Menu /></ModuleRoute>} />
+        <Route path="products" element={<ModuleRoute module="PRODUCTS"><Products /></ModuleRoute>} />
+        <Route path="assembly" element={<ModuleRoute module="ASSEMBLY"><Assembly /></ModuleRoute>} />
+        <Route path="invoices" element={<ModuleRoute module="INVOICES"><Invoices /></ModuleRoute>} />
       </Route>
       <Route
         path="*"

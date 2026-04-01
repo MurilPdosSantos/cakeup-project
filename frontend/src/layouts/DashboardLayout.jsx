@@ -7,6 +7,7 @@ export default function DashboardLayout({ authKey }) {
 
   function handleLogout() {
     localStorage.removeItem(authKey);
+    localStorage.removeItem("cakeup_modules");
     navigate("/login");
   }
 

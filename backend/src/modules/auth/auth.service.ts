@@ -30,7 +30,13 @@ export class AuthService {
     const jti = randomUUID();
     const payload = { sub: store.id, domain: store.domain, jti };
     const accessToken = await this.jwtService.signAsync(payload);
-    return { accessToken };
+    return { accessToken, modules: store.modules ?? [] };
+  }
+
+  async getStoreModules(storeId: string) {
+    const store = await this.storesService.findById(storeId);
+    if (!store) throw new UnauthorizedException("Loja não encontrada");
+    return store.modules ?? [];
   }
 
   async logout(jti: string, exp: number) {

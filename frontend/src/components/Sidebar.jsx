@@ -1,15 +1,20 @@
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useModules } from "../hooks/useModules.js";
 
-const links = [
-  { label: "Métricas", to: "/app/metrics" },
-  { label: "Cardápio", to: "/app/menu" },
-  { label: "Produtos", to: "/app/products" },
-  { label: "Montagem", to: "/app/assembly" },
-  { label: "Faturas", to: "/app/invoices" }
+const allLinks = [
+  { label: "Métricas", to: "/app/metrics", module: "METRICS" },
+  { label: "Cardápio", to: "/app/menu", module: "MENU" },
+  { label: "Produtos", to: "/app/products", module: "PRODUCTS" },
+  { label: "Montagem", to: "/app/assembly", module: "ASSEMBLY" },
+  { label: "Faturas", to: "/app/invoices", module: "INVOICES" }
 ];
 
 export default function Sidebar() {
+  const modules = useModules();
+
+  const links = allLinks.filter((link) => modules.includes(link.module));
+
   return (
     <aside className="min-h-screen w-64 border-r border-[#1A6F4A] bg-[#1B3D2F] p-6">
       <motion.div
