@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login.jsx";
+import LpCakeup from "./pages/LpCakeup.jsx";
 import DashboardLayout from "./layouts/DashboardLayout.jsx";
 import Metrics from "./pages/Metrics.jsx";
 import Products from "./pages/Products.jsx";
@@ -24,6 +25,7 @@ function ProtectedRoute({ children }) {
 export default function App() {
   return (
     <Routes>
+      <Route path="/lp-cakeup" element={<LpCakeup />} />
       <Route path="/login" element={<Login authKey={AUTH_KEY} />} />
       <Route
         path="/app"
